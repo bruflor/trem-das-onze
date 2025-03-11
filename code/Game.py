@@ -22,7 +22,7 @@ class Game:
             game_over = GameStats('GameOver',self.window)
             game_won = GameStats('GameWin',self.window)
 
-            if menu_return in [MENU_OPTION[0], MENU_OPTION[1], MENU_OPTION[2]]:  # Players
+            if menu_return in [MENU_OPTION[0]]:  # Players
                 player_score = [0, 0]  # [Player1, Player2]
 
                 # Run Level 1
@@ -42,6 +42,10 @@ class Game:
                 else:
                     # Game over after Level 1
                     game_over.run(player_score[0])
+
+            elif menu_return == MENU_OPTION[2]:  # Score
+                # Show score screen (placeholder)
+                pass
 
             elif menu_return == MENU_OPTION[3]:  # Score
                 # Show score screen (placeholder)

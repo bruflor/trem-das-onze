@@ -4,6 +4,7 @@ from code.Const import WIN_WIDTH
 from code.Enemy import Enemy
 from code.Entity import Entity
 from code.Player import Player
+from code.PlayerAttack import PlayerAttack
 
 
 class EntityMediator:
@@ -24,6 +25,8 @@ class EntityMediator:
         if isinstance(ent1, Player) and isinstance(ent2, Enemy):
             valid_interaction = True
         elif isinstance(ent1, Enemy) and isinstance(ent2, Player):
+            valid_interaction = True
+        elif isinstance(ent1, PlayerAttack) and isinstance(ent2, Enemy):
             valid_interaction = True
 
         if valid_interaction:

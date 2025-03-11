@@ -1,6 +1,9 @@
 import pygame
-from code.Const import ENTITY_SPEED, PLAYER_MOV_RANGE, WIN_WIDTH, WIN_HEIGHT, PLAYER_FRAME_COUNT
+from code.Const import ENTITY_SPEED, PLAYER_MOV_RANGE, WIN_WIDTH, WIN_HEIGHT, PLAYER_FRAME_COUNT, PLAYER_ATTACK_DELAY, \
+    PLAYER_KEY_ATTACK
 from code.Entity import Entity
+from code.PlayerAttack import PlayerAttack
+
 
 class Player(Entity):
     def __init__(self, name: str, position: tuple):
@@ -18,6 +21,7 @@ class Player(Entity):
         self.rect.width = frame_width
         self.rect.height = frame_height
 
+        self.attack_delay = PLAYER_ATTACK_DELAY
 
         self.current_frame = 0
 
@@ -89,6 +93,19 @@ class Player(Entity):
             self.state = "running"
         elif self.is_grounded:
             self.state = "walking"
+
+    def attack(self):
+        self.attack_delay -= 1
+        if self.attack_delay == 0:
+            self.attack_delay = PLAYER_ATTACK_DELAY
+            pressed_key = pygame.key.get_pressed()
+            if pressed_key[PLAYER_KEY_ATTACK[self.name]]:
+                self.state = "attacking"
+                return PlayerAttack(name=f'{self.name}Attack', position=(self.rect.centerx, self.rect.centery))
+            else:
+                return None
+        else:
+            return None
 
     def update(self):
         self.move()

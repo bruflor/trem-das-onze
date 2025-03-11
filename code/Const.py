@@ -18,7 +18,7 @@ PLAYER_MOV_RANGE = {
     'max_width': WIN_WIDTH + 470,
     'ground': WIN_HEIGHT - 30,
 }
-
+PLAYER_ATTACK_DELAY = 20
 ENEMY_MOV_POS = {
     'Enemy1': WIN_HEIGHT - 30,
     'Enemy2': WIN_HEIGHT - 10,
@@ -63,7 +63,7 @@ ENTITY_SPEED = {
     'Level2Bg5': 2,
     'Level2Bg6': 2.5,
     'Player': 3,
-    'PlayerAttack': 1,
+    'PlayerAttack': 4,
     'Enemy1': 2,
     'Enemy2': 2,
     'Enemy3': 2,
@@ -113,7 +113,7 @@ ENTITY_DAMAGE = {
     'Level2Bg5': 0,
     'Level2Bg6': 0,
     'Player': 1,
-    'PlayerAttack': 25,
+    'PlayerAttack': 10,
     'Enemy1': 10,
     'Enemy2': 40,
     'Enemy3': 30,
@@ -159,7 +159,7 @@ ENTITY_SHOT_DELAY = {
 
 # M
 MENU_OPTION = ('NEW GAME - NORMAL',
-               'NEW GAME - HARDCORE',
+               # 'NEW GAME - HARDCORE',
                'SCORE',
                'INSTRUCTIONS',
                'EXIT')
@@ -174,11 +174,13 @@ PLAYER_KEY_JUMP = {'Player': pygame.K_SPACE}
 PLAYER_KEY_RUN = {'Player': pygame.KMOD_SHIFT}
 
 # S
-SPAWN_TIME = 2000
+# SPAWN_TIME = 2000
+SPAWN_TIME = 6000
 
 # T
 TIMEOUT_STEP = 100  # 100ms
-TIMEOUT_LEVEL = 30000  # 20s
+TIMEOUT_LEVEL = 30000  # 30s
+# TIMEOUT_LEVEL = 5000  # 30s
 
 # S
 SCORE_POS = {'Title': (WIN_WIDTH / 2, 50),

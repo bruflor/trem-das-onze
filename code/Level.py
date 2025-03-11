@@ -49,6 +49,9 @@ class Level:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
                 if isinstance(ent, Player):
+                    player_attack = ent.attack()
+                    if player_attack is not None:
+                        self.entity_list.append(player_attack)
                     self.level_text(14, f'Player - Health: {ent.health} | Score: {ent.score}', COLOR_WHITE, (10, 25))
                     ent.update()
                 if isinstance(ent, Enemy):
@@ -85,8 +88,8 @@ class Level:
                     return False
             # Texts
             self.level_text(14, f'{self.name} - Timeout {self.timeout / 1000 : .1f}s', COLOR_WHITE, (10, 5))
-            # self.level_text(14, f'fps: {clock.get_fps() : .0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
-            # self.level_text(14, f'entities: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 25))
+            self.level_text(14, f'fps: {clock.get_fps() : .0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
+            self.level_text(14, f'entities: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 25))
             pygame.display.flip()
 
             # Collisions
