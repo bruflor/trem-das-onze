@@ -4,32 +4,41 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import WIN_WIDTH, WIN_HEIGHT, COLOR_ORANGE, COLOR_RED, COLOR_WHITE
+from code.Const import WIN_WIDTH, WIN_HEIGHT, COLOR_ORANGE, COLOR_RED, COLOR_WHITE, COLOR_GREEN
 
 
-class GameOver:
-    def __init__(self, window):
+class GameStats:
+    def __init__(self, name, window):
         # adding a window
         self.window = window
+        self.name = name
 
-        image = pygame.image.load('./assets/GameOver.png').convert_alpha()
+        image = pygame.image.load(f'./assets/{name}.png').convert_alpha()
         self.surf = pygame.transform.scale(image, (WIN_WIDTH, WIN_HEIGHT))
         self.rect = self.surf.get_rect()
 
-        pygame.mixer_music.load('./assets/GameOver.mp3')
+        pygame.mixer_music.load(f'./assets/{name}.mp3')
         # # Adding music in a loop with -1
         pygame.mixer_music.play(-1)
         pygame.mixer_music.set_volume(0.5)
 
-    def run(self):
+    def run(self, player_score):
 
         # Wait for user input to return to the menu
         waiting = True
         while waiting:
             # Display game over screen
             self.window.blit(self.surf, self.rect)
-            self.screen_text(48, "GAME", COLOR_ORANGE, ((WIN_WIDTH / 2), 70))
-            self.screen_text(92, "OVER", COLOR_RED, ((WIN_WIDTH / 2), 120))
+            if self.name == 'GameOver':
+                self.screen_text(48, "GAME", COLOR_ORANGE, ((WIN_WIDTH / 2), 70))
+                self.screen_text(92, "OVER", COLOR_RED, ((WIN_WIDTH / 2), 120))
+                # self.screen_text(24, player_score, COLOR_WHITE, ((WIN_WIDTH / 2), 140))
+            elif self.name == 'GameWin':
+                self.screen_text(48, "you", COLOR_ORANGE, ((WIN_WIDTH / 2), 70))
+                self.screen_text(92, "WON", COLOR_GREEN, ((WIN_WIDTH / 2), 120))
+                # self.screen_text(24, player_score, COLOR_WHITE, ((WIN_WIDTH / 2), 140))
+                self.screen_text(16, "You came home safely!", COLOR_WHITE,
+                                 ((WIN_WIDTH / 2), WIN_HEIGHT - 160))
             self.screen_text(16, "Press any button to return to menu", COLOR_WHITE, ((WIN_WIDTH / 2), WIN_HEIGHT - 50))
 
             pygame.display.flip()

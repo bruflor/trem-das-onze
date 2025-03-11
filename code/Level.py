@@ -49,7 +49,7 @@ class Level:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
                 if isinstance(ent, Player):
-                    self.level_text(14, f'Player - Health: {ent.health} | Score: {ent.score}', COLOR_RED, (10, 25))
+                    self.level_text(14, f'Player - Health: {ent.health} | Score: {ent.score}', COLOR_WHITE, (10, 25))
                     ent.update()
                 if isinstance(ent, Enemy):
                     ent.update(time_passed)
