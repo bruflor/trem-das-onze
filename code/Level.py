@@ -13,6 +13,8 @@ from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 from code.EntityMediator import EntityMediator
 from code.Player import Player
+
+
 # from code.Enemy import Enemy
 
 
@@ -47,7 +49,7 @@ class Level:
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
-                if isinstance(ent, Player) :
+                if isinstance(ent, Player):
                     self.level_text(14, f'Player - Health: {ent.health} | Score: {ent.score}', COLOR_GREEN,
                                     (10, 25))
                     ent.update()
@@ -59,7 +61,13 @@ class Level:
                     pygame.quit()
                     sys.exit()
                 if event.type == EVENT_ENEMY:
-                    choice = random.choice(('Enemy1', 'Enemy2'))
+                    choice = random.choice((
+                        'Enemy1',
+                        'Enemy2',
+                        'Enemy3',
+                        'Enemy4',
+                        'Enemy5',
+                    ))
                     self.entity_list.append(EntityFactory.get_entity(choice))
                 if event.type == EVENT_TIMEOUT:
                     self.timeout -= TIMEOUT_STEP
@@ -68,7 +76,7 @@ class Level:
                         for ent in self.entity_list:
                             if isinstance(ent, Player) and ent.name == 'Player':
                                 player_score[0] = ent.score
-                        return True # Case that user wins
+                        return True  # Case that user wins
 
                 # If we do not found any player because it was killed, return false to end game
                 found_player = False

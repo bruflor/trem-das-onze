@@ -27,11 +27,8 @@ class EntityMediator:
             valid_interaction = True
 
         if valid_interaction:
-            if (ent1.rect.right >= ent2.rect.left and
-                    ent1.rect.left <= ent2.rect.right and
-                    ent1.rect.bottom >= ent2.rect.top and
-                    ent1.rect.top <= ent2.rect.bottom):
-
+            has_collided = pygame.Rect.colliderect(ent1.rect, ent2.rect)
+            if has_collided:
                 # Check if the entities have already collided
                 if ent2 not in ent1.collided_with:
                     # Apply damage

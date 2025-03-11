@@ -21,7 +21,11 @@ PLAYER_MOV_RANGE = {
 
 ENEMY_MOV_POS = {
     'Enemy1': WIN_HEIGHT - 60,
-    'Enemy2': WIN_HEIGHT - 120,
+    'Enemy2': WIN_HEIGHT - 100,
+    'Enemy3': WIN_HEIGHT - 60,
+    'Enemy4': WIN_HEIGHT - 60,
+    'Enemy5': WIN_HEIGHT - 60,
+    'Enemy6': WIN_HEIGHT - 60,
 }
 
 PLAYER_FRAME_COUNT = {
@@ -37,6 +41,10 @@ PLAYER_FRAME_COUNT = {
 ENEMY_FRAME_COUNT = {
     'Enemy1': 4,
     'Enemy2': 12,
+    'Enemy3': 6,
+    'Enemy4': 6,
+    'Enemy5': 1,
+    'Enemy6': 1,
 }
 
 ENTITY_SPEED = {
@@ -51,12 +59,17 @@ ENTITY_SPEED = {
     'Level2Bg1': 0.5,
     'Level2Bg2': 1,
     'Level2Bg3': 1.5,
-    'Level2Bg4': 2,
-    'Level2Bg5': 2.5,
+    'Level2Bg4': 1.8,
+    'Level2Bg5': 2,
+    'Level2Bg6': 2.5,
     'Player': 3,
     'PlayerAttack': 1,
-    'Enemy1': 1,
-    'Enemy2': 1,
+    'Enemy1': 2,
+    'Enemy2': 2,
+    'Enemy3': 2,
+    'Enemy4': 3,
+    'Enemy5': 1,
+    'Enemy6': 1,
 }
 
 ENTITY_HEALTH = {
@@ -72,10 +85,16 @@ ENTITY_HEALTH = {
     'Level2Bg2': 999,
     'Level2Bg3': 999,
     'Level2Bg4': 999,
+    'Level2Bg5': 999,
+    'Level2Bg6': 999,
     'Player': 300,
     'PlayerAttack': 1,
-    'Enemy1': 50,
-    'Enemy2': 80,
+    'Enemy1': 40,
+    'Enemy2': 100,
+    'Enemy3': 60,
+    'Enemy4': 20,
+    'Enemy5': 100,
+    'Enemy6': 100,
 }
 
 ENTITY_DAMAGE = {
@@ -91,10 +110,16 @@ ENTITY_DAMAGE = {
     'Level2Bg2': 0,
     'Level2Bg3': 0,
     'Level2Bg4': 0,
+    'Level2Bg5': 0,
+    'Level2Bg6': 0,
     'Player': 1,
     'PlayerAttack': 25,
     'Enemy1': 10,
-    'Enemy2': 20,
+    'Enemy2': 40,
+    'Enemy3': 30,
+    'Enemy4': 10,
+    'Enemy5': 10,
+    'Enemy6': 10,
 }
 
 ENTITY_SCORE = {
@@ -110,16 +135,26 @@ ENTITY_SCORE = {
     'Level2Bg2': 0,
     'Level2Bg3': 0,
     'Level2Bg4': 0,
+    'Level2Bg5': 0,
+    'Level2Bg6': 0,
     'Player': 0,
     'PlayerAttack': 0,
     'Enemy1': 100,
     'Enemy2': 125,
+    'Enemy3': 100,
+    'Enemy4': 100,
+    'Enemy5': 100,
+    'Enemy6': 100,
 }
 
 ENTITY_SHOT_DELAY = {
     'Player': 20,
     'Enemy1': 100,
     'Enemy2': 200,
+    'Enemy3': 200,
+    'Enemy4': 200,
+    'Enemy5': 200,
+    'Enemy6': 200,
 }
 
 # M

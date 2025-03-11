@@ -30,8 +30,7 @@ class Enemy(Entity):
 
         # Images and sounds
         self.animations = {
-            "Enemy1": self._load_animation(f'./assets/{name}.png', frame_count=ENEMY_FRAME_COUNT[name]),
-            "Enemy2": self._load_animation(f'./assets/{name}.png', frame_count=ENEMY_FRAME_COUNT[name]),
+            name: self._load_animation(f'./assets/{name}.png', frame_count=ENEMY_FRAME_COUNT[name]),
         }
         self.surf = self.animations[self.state][self.current_frame]  # Initial frame
 
