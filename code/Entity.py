@@ -16,6 +16,9 @@ class Entity(ABC):
         self.damage = ENTITY_DAMAGE[self.name]
         self.last_dmg = 'None'
         self.score = ENTITY_SCORE[self.name]
+        self.collided_with = set()  # Track entities that have already collided with this entity
+
+
 
     # Decorator to method
     @abstractmethod

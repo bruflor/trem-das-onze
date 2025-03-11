@@ -1,3 +1,5 @@
+import pygame
+
 from code.Const import WIN_WIDTH
 from code.Enemy import Enemy
 from code.Entity import Entity
@@ -18,24 +20,40 @@ class EntityMediator:
 
     @staticmethod
     def verify_collision_entity(ent1, ent2):
-        pass
-        # valid_interaction = False
-        # if isinstance(ent1, Enemy) and isinstance(ent2, Player):
-        #     valid_interaction = True
-        # elif isinstance(ent1, Player) and isinstance(ent2, Enemy):
-        #     valid_interaction = True
+        valid_interaction = False
+        if isinstance(ent1, Player) and isinstance(ent2, Enemy):
+            valid_interaction = True
+        elif isinstance(ent1, Enemy) and isinstance(ent2, Player):
+            valid_interaction = True
 
+        if valid_interaction:
+            if (ent1.rect.right >= ent2.rect.left and
+                    ent1.rect.left <= ent2.rect.right and
+                    ent1.rect.bottom >= ent2.rect.top and
+                    ent1.rect.top <= ent2.rect.bottom):
 
-        # if valid_interaction:
-        #     pass
-        #     if (ent1.rect.right >= ent2.rect.left and
-        #             ent1.rect.left <= ent2.rect.right and
-        #             ent1.rect.bottom >= ent2.rect.top and
-        #             ent1.rect.top <= ent2.rect.bottom):
-        #         ent1.health -= ent2.damage
-        #         ent2.health -= ent1.damage
-        #         ent1.last_dmg = ent2.name
-        #         ent2.last_dmg = ent1.name
+                # Check if the entities have already collided
+                if ent2 not in ent1.collided_with:
+                    # Apply damage
+                    if isinstance(ent1, Player):
+                        ent1.health -= ent2.damage
+                        ent1.last_dmg = ent2.name
+                    elif isinstance(ent2, Player):
+                        ent2.health -= ent1.damage
+                        ent2.last_dmg = ent1.name
+
+                    # Mark the entities as having collided
+                    ent1.collided_with.add(ent2)
+                    ent2.collided_with.add(ent1)
+
+                    print(f"Collision: {ent1.name} and {ent2.name}")
+                    print(f"{ent1.name} health: {ent1.health}, {ent2.name} health: {ent2.health}")
+            else:
+                # Reset the collision tracking if the entities are no longer colliding
+                if ent2 in ent1.collided_with:
+                    ent1.collided_with.remove(ent2)
+                if ent1 in ent2.collided_with:
+                    ent2.collided_with.remove(ent1)
 
 
     @staticmethod
@@ -43,9 +61,9 @@ class EntityMediator:
         for i in range(len(entity_list)):
             entity1 = entity_list[i]
             EntityMediator.__verify_collision_window(entity1)
-            # for j in range(i + 1, len(entity_list)):
-            #     entity2 = entity_list[j]
-            #     EntityMediator.verify_collision_entity(entity1, entity2)
+            for j in range(i + 1, len(entity_list)):
+                entity2 = entity_list[j]
+                EntityMediator.verify_collision_entity(entity1, entity2)
 
     @staticmethod
     def verify_health(entity_list: list[Entity]):

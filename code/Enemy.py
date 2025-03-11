@@ -1,6 +1,6 @@
 import pygame
 
-from code.Const import ENTITY_SPEED, WIN_WIDTH, ENTITY_SHOT_DELAY, WIN_HEIGHT
+from code.Const import ENTITY_SPEED, WIN_WIDTH, ENTITY_SHOT_DELAY, WIN_HEIGHT, ENEMY_FRAME_COUNT
 from code.Entity import Entity
 
 
@@ -8,7 +8,14 @@ class Enemy(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
         self.surf = pygame.image.load('./assets/' + name + '.png').convert_alpha()
-        self.rect = self.surf.get_rect(left=position[0], bottom=position[1])
+        # Calculate the width of a single frame
+        frame_width = self.surf.get_width() // ENEMY_FRAME_COUNT[name]
+        frame_height = self.surf.get_height()
+
+        # Set the rect size to match the frame size
+        self.rect = self.surf.get_rect(bottomleft=position)
+        self.rect.width = frame_width
+        self.rect.height = frame_height
 
         # Physics
         self.current_frame = 0
@@ -23,8 +30,8 @@ class Enemy(Entity):
 
         # Images and sounds
         self.animations = {
-            "Enemy1": self._load_animation(f'./assets/{name}.png', frame_count=4),
-            "Enemy2": self._load_animation(f'./assets/{name}.png', frame_count=12),
+            "Enemy1": self._load_animation(f'./assets/{name}.png', frame_count=ENEMY_FRAME_COUNT[name]),
+            "Enemy2": self._load_animation(f'./assets/{name}.png', frame_count=ENEMY_FRAME_COUNT[name]),
         }
         self.surf = self.animations[self.state][self.current_frame]  # Initial frame
 
@@ -34,6 +41,7 @@ class Enemy(Entity):
         fliped_spritesheet = pygame.transform.flip(spritesheet, True, False)
         frame_width = fliped_spritesheet.get_width() // frame_count
         frame_height = fliped_spritesheet.get_height()
+
         frames = []
         for i in range(frame_count):
             frame = fliped_spritesheet.subsurface(pygame.Rect(i * frame_width, 0, frame_width, frame_height))
