@@ -35,9 +35,9 @@ class Level:
         pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)  # check victory condition
 
     def run(self, player_score):
-        # pygame.mixer_music.load(f'./assets/{self.name}.mp3')
-        # pygame.mixer_music.set_volume(0.3)
-        # pygame.mixer_music.play(-1)
+        pygame.mixer_music.load(f'./assets/{self.name}.wav')
+        pygame.mixer_music.set_volume(0.3)
+        pygame.mixer_music.play(-1)
         clock = pygame.time.Clock()  # FPS
 
         while True:
@@ -45,6 +45,8 @@ class Level:
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
+                if isinstance(ent, Player):
+                    ent.update()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -60,7 +62,7 @@ class Level:
                         for ent in self.entity_list:
                             if isinstance(ent, Player) and ent.name == 'Player':
                                 player_score[0] = ent.score
-                        return True
+                        return False
 
                 # If we do not found any player because it was killed, return false to end game
                 found_player = False
@@ -80,7 +82,8 @@ class Level:
             EntityMediator.verify_health(entity_list=self.entity_list)
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
-        text_font: Font = pygame.font.SysFont(name='Lucida Sans Typewriter', size=text_size)
+        font_path = './assets/Jersey10-Regular.ttf'
+        text_font: Font = pygame.font.Font(font_path, text_size)
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(left=text_pos[0], top=text_pos[1])
         self.window.blit(text_surf, text_rect)
