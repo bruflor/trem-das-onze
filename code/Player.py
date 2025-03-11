@@ -1,5 +1,5 @@
 import pygame
-from code.Const import ENTITY_SPEED, PLAYER_MOV_RANGE, WIN_WIDTH
+from code.Const import ENTITY_SPEED, PLAYER_MOV_RANGE, WIN_WIDTH, WIN_HEIGHT
 from code.Entity import Entity
 
 class Player(Entity):

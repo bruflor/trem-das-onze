@@ -5,9 +5,8 @@ from code.Const import ENTITY_HEALTH, ENTITY_DAMAGE, ENTITY_SCORE, WIN_WIDTH, WI
 
 
 class Entity(ABC):
-    def __init__(self, name:str, position:tuple, state=None):
+    def __init__(self, name:str, position:tuple):
         self.name = name
-        self.state = state  # Estado inicial da animação
         self.surf = pygame.image.load('./assets/'+ name +'.png').convert_alpha()
         scaled_img = pygame.transform.scale(self.surf, (WIN_WIDTH, WIN_HEIGHT))
         self.surf = scaled_img

@@ -1,6 +1,9 @@
-# colors
 import pygame
-from pygame.examples.grid import WINDOW_WIDTH
+
+# W
+WIN_WIDTH = 576
+WIN_HEIGHT = 324
+
 
 COLOR_WHITE = (255, 255, 255)
 COLOR_GREEN = (200, 212, 93 )
@@ -11,20 +14,26 @@ COLOR_RED = (173, 47, 79)
 EVENT_ENEMY = pygame.USEREVENT + 1
 EVENT_TIMEOUT = pygame.USEREVENT + 2
 
+PLAYER_MOV_RANGE = {
+    'max_height': WIN_HEIGHT,
+    'max_width': WIN_WIDTH+470,
+    'ground': WIN_HEIGHT+160,
+}
+
 ENTITY_SPEED = {
     'Level1Bg0': 0,
-    'Level1Bg1': 1,
-    'Level1Bg2': 2,
-    'Level1Bg3': 3,
-    'Level1Bg4': 4,
-    'Level1Bg5': 5,
-    'Level1Bg6': 6,
+    'Level1Bg1': 0.3,
+    'Level1Bg2': 0.6,
+    'Level1Bg3': 0.9,
+    'Level1Bg4': 1.2,
+    'Level1Bg5': 1.6,
+    'Level1Bg6': 2,
     'Level2Bg0': 0,
-    'Level2Bg1': 1,
-    'Level2Bg2': 2,
-    'Level2Bg3': 3,
-    'Level2Bg4': 4,
-    'Level2Bg5': 4,
+    'Level2Bg1': 0.5,
+    'Level2Bg2': 1,
+    'Level2Bg3': 1.5,
+    'Level2Bg4': 2,
+    'Level2Bg5': 2.5,
     'Player': 3,
     'PlayerAttack': 1,
     'Enemy1': 1,
@@ -117,9 +126,7 @@ SPAWN_TIME = 4000
 TIMEOUT_STEP = 100  # 100ms
 TIMEOUT_LEVEL = 20000  # 20s
 
-# W
-WIN_WIDTH = 576
-WIN_HEIGHT = 324
+
 
 # S
 SCORE_POS = {'Title': (WIN_WIDTH / 2, 50),

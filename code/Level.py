@@ -7,7 +7,7 @@ from pygame import Surface, Rect
 from pygame.font import Font
 
 from code.Const import COLOR_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, EVENT_TIMEOUT, TIMEOUT_STEP, \
-    TIMEOUT_LEVEL, WIN_WIDTH
+    TIMEOUT_LEVEL, WIN_WIDTH, COLOR_ORANGE, COLOR_GREEN
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 from code.EntityMediator import EntityMediator
@@ -21,12 +21,13 @@ class Level:
         self.window = window
         self.name = name
         self.game_mode = game_mode  # 1p, 2p cooperative or 2p competitive
-        self.entity_list: list[Entity] = []
+        # self.entity_list: list[Entity] = []
+        self.entity_list = []
 
         # Getting all bg
         self.entity_list.extend(EntityFactory.get_entity(self.name + 'Bg'))
         # Adding the player
-        player = EntityFactory.get_entity('Player')
+        player = (EntityFactory.get_entity('Player'))
 
         player.score = player_score[0]
         self.entity_list.append(player)
@@ -46,15 +47,17 @@ class Level:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
                 if isinstance(ent, Player):
+                    self.level_text(14, f'Player - Health: {ent.health} | Score: {ent.score}', COLOR_GREEN,
+                                    (10, 25))
                     ent.update()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-                # if event.type == EVENT_ENEMY:
-                #     choice = random.choice(('Enemy1', 'Enemy2'))
-                #     self.entity_list.append(EntityFactory.get_entity(choice))
+                if event.type == EVENT_ENEMY:
+                    choice = random.choice(('Enemy1', 'Enemy2'))
+                    self.entity_list.append(EntityFactory.get_entity(choice))
                 if event.type == EVENT_TIMEOUT:
                     self.timeout -= TIMEOUT_STEP
                     if self.timeout == 0:
