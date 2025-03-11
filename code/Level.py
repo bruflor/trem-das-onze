@@ -39,7 +39,7 @@ class Level:
 
     def run(self, player_score):
         pygame.mixer_music.load(f'./assets/{self.name}.wav')
-        pygame.mixer_music.set_volume(0.3)
+        pygame.mixer_music.set_volume(0.2)
         pygame.mixer_music.play(-1)
         clock = pygame.time.Clock()  # FPS
 
