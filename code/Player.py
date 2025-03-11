@@ -7,6 +7,12 @@ from code.Entity import Entity
 class Player(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
+        # Physics
+        self.current_frame = 0
+        self.frame_rate = 10  # Frames por segundo
+        self.last_update = pygame.time.get_ticks()
+        self._gravity = 0
+        # Images and sounds
         self.animations = {
             "idle": self._load_animation(f'./assets/{name}Idle.png', frame_count=5),
             "running": self._load_animation(f'./assets/{name}Run.png', frame_count=8),
@@ -16,11 +22,8 @@ class Player(Entity):
             "attacking": self._load_animation(f'./assets/{name}Attack.png', frame_count=5),
             "dead": self._load_animation(f'./assets/{name}Dead.png', frame_count=5),
         }
-        # Carrega as animações para cada estado
-        self.current_frame = 0
-        self.frame_rate = 10  # Frames por segundo
-        self.last_update = pygame.time.get_ticks()
-        self._gravity = 0
+        self.jump_sound = pygame.mixer.Sound(f'./assets/Jump.wav')
+        self.jump_sound.set_volume(0.3)
 
     def _load_animation(self, path: str, frame_count: int, direction='None'):
         # Carrega uma spritesheet e corta os frames
@@ -55,6 +58,7 @@ class Player(Entity):
         if keys[pygame.K_SPACE] and self.rect.bottom >= PLAYER_MOV_RANGE['ground']:
             self.state = "jumping"
             self._gravity = -15
+            self.jump_sound.play()
 
         elif keys[pygame.K_LEFT] and self.rect.left >= 0:
             self.rect.x -= ENTITY_SPEED[self.name]
