@@ -19,7 +19,6 @@ class Player(Entity):
         self.rect.height = frame_height
 
 
-
         self.current_frame = 0
 
         self.frame_rate = 10  # Frames per second
@@ -29,13 +28,11 @@ class Player(Entity):
 
         # Images and sounds
         self.animations = {
-            "idle": self._load_animation(f'./assets/{name}Idle.png', frame_count=5),
             "running": self._load_animation(f'./assets/{name}Run.png', frame_count=8),
             "running-backward": self._load_animation(f'./assets/{name}Run.png', frame_count=8, direction='backward'),
             "walking": self._load_animation(f'./assets/{name}Walk.png', frame_count=8),
             "jumping": self._load_animation(f'./assets/{name}Jump.png', frame_count=8),
             "attacking": self._load_animation(f'./assets/{name}Attack.png', frame_count=5),
-            "dead": self._load_animation(f'./assets/{name}Dead.png', frame_count=5),
         }
         self.jump_sound = pygame.mixer.Sound(f'./assets/Jump.wav')
         self.jump_sound.set_volume(0.3)

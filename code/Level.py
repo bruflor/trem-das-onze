@@ -7,7 +7,7 @@ from pygame import Surface, Rect
 from pygame.font import Font
 
 from code.Const import COLOR_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, EVENT_TIMEOUT, TIMEOUT_STEP, \
-    TIMEOUT_LEVEL, WIN_WIDTH, COLOR_ORANGE, COLOR_GREEN
+    TIMEOUT_LEVEL, WIN_WIDTH, COLOR_ORANGE, COLOR_GREEN, COLOR_RED
 from code.Enemy import Enemy
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
@@ -24,7 +24,6 @@ class Level:
         self.window = window
         self.name = name
         self.game_mode = game_mode  # 1p, 2p cooperative or 2p competitive
-        # self.entity_list: list[Entity] = []
         self.entity_list = []
 
         # Getting all bg
@@ -50,8 +49,7 @@ class Level:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
                 if isinstance(ent, Player):
-                    self.level_text(14, f'Player - Health: {ent.health} | Score: {ent.score}', COLOR_GREEN,
-                                    (10, 25))
+                    self.level_text(14, f'Player - Health: {ent.health} | Score: {ent.score}', COLOR_RED, (10, 25))
                     ent.update()
                 if isinstance(ent, Enemy):
                     ent.update(time_passed)
@@ -87,8 +85,8 @@ class Level:
                     return False
             # Texts
             self.level_text(14, f'{self.name} - Timeout {self.timeout / 1000 : .1f}s', COLOR_WHITE, (10, 5))
-            self.level_text(14, f'fps: {clock.get_fps() : .0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
-            self.level_text(14, f'entities: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 25))
+            # self.level_text(14, f'fps: {clock.get_fps() : .0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
+            # self.level_text(14, f'entities: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 25))
             pygame.display.flip()
 
             # Collisions
