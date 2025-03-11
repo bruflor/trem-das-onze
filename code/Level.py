@@ -68,7 +68,7 @@ class Level:
                         for ent in self.entity_list:
                             if isinstance(ent, Player) and ent.name == 'Player':
                                 player_score[0] = ent.score
-                        return False
+                        return True # Case that user wins
 
                 # If we do not found any player because it was killed, return false to end game
                 found_player = False

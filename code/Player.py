@@ -68,7 +68,7 @@ class Player(Entity):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE] and self.is_grounded:
             self.state = "jumping"
-            self._gravity = -20
+            self._gravity = -15
             self.is_grounded = False
             self.jump_sound.play()
         elif keys[pygame.K_LEFT] and self.rect.left >= 0:
