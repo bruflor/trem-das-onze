@@ -6,6 +6,12 @@ class Player(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
         # Physics
+        self.surf = pygame.image.load('./assets/' + name + '.png').convert_alpha()
+        # scaled_img = pygame.transform.scale(self.surf, (WIN_WIDTH, WIN_HEIGHT))
+        # self.surf = scaled_img
+        self.rect = self.surf.get_rect(left=position[0], top=position[1])
+
+
         self.current_frame = 0
         self.state = "walking"
         self.frame_rate = 10  # Frames per second
@@ -62,7 +68,7 @@ class Player(Entity):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE] and self.is_grounded:
             self.state = "jumping"
-            self._gravity = -15
+            self._gravity = -20
             self.is_grounded = False
             self.jump_sound.play()
         elif keys[pygame.K_LEFT] and self.rect.left >= 0:

@@ -17,7 +17,12 @@ EVENT_TIMEOUT = pygame.USEREVENT + 2
 PLAYER_MOV_RANGE = {
     'max_height': WIN_HEIGHT,
     'max_width': WIN_WIDTH+470,
-    'ground': WIN_HEIGHT+160,
+    'ground': WIN_HEIGHT-30,
+}
+
+ENEMY_MOV_POS = {
+    'Enemy1': WIN_HEIGHT-60,
+    'Enemy2': WIN_HEIGHT-120,
 }
 
 ENTITY_SPEED = {
@@ -56,7 +61,7 @@ ENTITY_HEALTH = {
     'Player': 300,
     'PlayerAttack': 1,
     'Enemy1': 50,
-    'Enemy2': 60,
+    'Enemy2': 80,
 }
 
 ENTITY_DAMAGE = {

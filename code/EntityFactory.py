@@ -1,7 +1,7 @@
 import random
 
 from code.Background import Background
-from code.Const import WIN_WIDTH, WIN_HEIGHT, PLAYER_MOV_RANGE
+from code.Const import WIN_WIDTH, WIN_HEIGHT, PLAYER_MOV_RANGE, ENEMY_MOV_POS
 from code.Enemy import Enemy
 from code.Player import Player
 
@@ -26,10 +26,8 @@ class EntityFactory:
                 return Player('Player', (5, PLAYER_MOV_RANGE['ground']))
             case "Enemy1":
                 print('enemy1')
-                # return Enemy('Enemy1', (WIN_WIDTH + 10, random.randint((PLAYER_MOV_RANGE['ground']+20), PLAYER_MOV_RANGE['ground'])))
                 return Enemy('Enemy1', (WIN_WIDTH + 10, PLAYER_MOV_RANGE['ground']))
             case "Enemy2":
                 print('enemy2')
-                # return Enemy('Enemy1', (WIN_WIDTH + 10, random.randint((PLAYER_MOV_RANGE['ground']+20), PLAYER_MOV_RANGE['ground'])))
                 return Enemy('Enemy2', (WIN_WIDTH + 10, PLAYER_MOV_RANGE['ground']))
 

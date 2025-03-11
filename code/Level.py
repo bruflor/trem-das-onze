@@ -8,6 +8,7 @@ from pygame.font import Font
 
 from code.Const import COLOR_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, EVENT_TIMEOUT, TIMEOUT_STEP, \
     TIMEOUT_LEVEL, WIN_WIDTH, COLOR_ORANGE, COLOR_GREEN
+from code.Enemy import Enemy
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 from code.EntityMediator import EntityMediator
@@ -42,14 +43,16 @@ class Level:
         clock = pygame.time.Clock()  # FPS
 
         while True:
-            clock.tick(60)
+            time_passed = clock.tick(60)
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
-                if isinstance(ent, Player):
+                if isinstance(ent, Player) :
                     self.level_text(14, f'Player - Health: {ent.health} | Score: {ent.score}', COLOR_GREEN,
                                     (10, 25))
                     ent.update()
+                if isinstance(ent, Enemy):
+                    ent.update(time_passed)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
