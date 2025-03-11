@@ -21,7 +21,7 @@ PLAYER_MOV_RANGE = {
 
 ENEMY_MOV_POS = {
     'Enemy1': WIN_HEIGHT - 60,
-    'Enemy2': WIN_HEIGHT - 100,
+    'Enemy2': WIN_HEIGHT - 90,
     'Enemy3': WIN_HEIGHT - 60,
     'Enemy4': WIN_HEIGHT - 60,
     'Enemy5': WIN_HEIGHT - 60,
