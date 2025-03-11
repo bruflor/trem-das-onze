@@ -1,17 +1,18 @@
 import pygame
-
 from code.Const import ENTITY_SPEED, PLAYER_MOV_RANGE, WIN_WIDTH
 from code.Entity import Entity
-
 
 class Player(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
         # Physics
         self.current_frame = 0
-        self.frame_rate = 10  # Frames por segundo
+        self.state = "walking"
+        self.frame_rate = 10  # Frames per second
         self.last_update = pygame.time.get_ticks()
         self._gravity = 0
+        self.is_grounded = True  # Track if the player is on the ground
+
         # Images and sounds
         self.animations = {
             "idle": self._load_animation(f'./assets/{name}Idle.png', frame_count=5),
@@ -26,7 +27,7 @@ class Player(Entity):
         self.jump_sound.set_volume(0.3)
 
     def _load_animation(self, path: str, frame_count: int, direction='None'):
-        # Carrega uma spritesheet e corta os frames
+        # Load a spritesheet and cut the frames
         spritesheet = pygame.image.load(path).convert_alpha()
         if direction == "backward":
             sprite = pygame.transform.flip(spritesheet, True, False)
@@ -40,8 +41,8 @@ class Player(Entity):
         return frames
 
     def update_animation(self):
-       now = pygame.time.get_ticks()
-       if now - self.last_update > 1000 // self.frame_rate:
+        now = pygame.time.get_ticks()
+        if now - self.last_update > 1000 // self.frame_rate:
             self.current_frame = (self.current_frame + 1) % len(self.animations[self.state])
             self.last_update = now
             self.surf = self.animations[self.state][self.current_frame]
@@ -51,27 +52,29 @@ class Player(Entity):
         self.rect.y += self._gravity
         if self.rect.bottom >= PLAYER_MOV_RANGE['ground']:
             self.rect.bottom = PLAYER_MOV_RANGE['ground']
+            self.is_grounded = True
+            if self.state == "jumping":
+                self.state = "walking"  # Reset to walking after landing
+        else:
+            self.is_grounded = False
 
     def move(self):
-        # Lógica de movimentação (exemplo)
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_SPACE] and self.rect.bottom >= PLAYER_MOV_RANGE['ground']:
+        if keys[pygame.K_SPACE] and self.is_grounded:
             self.state = "jumping"
             self._gravity = -15
+            self.is_grounded = False
             self.jump_sound.play()
-
         elif keys[pygame.K_LEFT] and self.rect.left >= 0:
             self.rect.x -= ENTITY_SPEED[self.name]
             self.state = "running-backward"
         elif keys[pygame.K_RIGHT] and self.rect.right <= PLAYER_MOV_RANGE['max_width']:
             self.rect.x += ENTITY_SPEED[self.name]
             self.state = "running"
-        else:
+        elif self.is_grounded:
             self.state = "walking"
 
     def update(self):
         self.move()
         self.apply_gravity()
         self.update_animation()
-
-
