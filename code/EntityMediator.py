@@ -18,15 +18,20 @@ class EntityMediator:
         if isinstance(ent, Player):
             if ent.rect.left >= WIN_WIDTH:
                 ent.health = 0
+        if isinstance(ent, PlayerAttack):
+            if ent.rect.left >= WIN_WIDTH:
+                ent.health = 0
 
     @staticmethod
     def verify_collision_entity(ent1, ent2):
         valid_interaction = False
-        if isinstance(ent1, Player) and isinstance(ent2, Enemy):
+        if isinstance(ent1, Enemy) and isinstance(ent2, PlayerAttack):
+            valid_interaction = True
+        elif isinstance(ent1, PlayerAttack) and isinstance(ent2, Enemy):
             valid_interaction = True
         elif isinstance(ent1, Enemy) and isinstance(ent2, Player):
             valid_interaction = True
-        elif isinstance(ent1, PlayerAttack) and isinstance(ent2, Enemy):
+        elif isinstance(ent1, Player) and isinstance(ent2, Enemy):
             valid_interaction = True
 
         if valid_interaction:
@@ -35,12 +40,11 @@ class EntityMediator:
                 # Check if the entities have already collided
                 if ent2 not in ent1.collided_with:
                     # Apply damage
-                    if isinstance(ent1, Player):
-                        ent1.health -= ent2.damage
-                        ent1.last_dmg = ent2.name
-                    elif isinstance(ent2, Player):
-                        ent2.health -= ent1.damage
-                        ent2.last_dmg = ent1.name
+                    ent2.health -= ent1.damage
+                    ent2.last_dmg = ent1.name
+
+                    ent1.health -= ent2.damage
+                    ent1.last_dmg = ent2.name
 
                     # Mark the entities as having collided
                     ent1.collided_with.add(ent2)
@@ -54,7 +58,6 @@ class EntityMediator:
                     ent1.collided_with.remove(ent2)
                 if ent1 in ent2.collided_with:
                     ent2.collided_with.remove(ent1)
-
 
     @staticmethod
     def verify_collision(entity_list: list[Entity]):
@@ -74,13 +77,8 @@ class EntityMediator:
                 entity_list.remove(ent)
 
     @staticmethod
-    def __give_score(enemy:Enemy, entity_list: list[Entity]):
-        pass
-        # if enemy.last_dmg == 'Player1Shot':
-        #     for ent in entity_list:
-        #         if ent.name == 'Player1':
-        #             ent.score += enemy.score
-        # elif enemy.last_dmg == 'Player2Shot':
-        #     for ent in entity_list:
-        #         if ent.name == 'Player2':
-        #             ent.score += enemy.score
+    def __give_score(enemy: Enemy, entity_list: list[Entity]):
+        if enemy.last_dmg == 'PlayerAttack':
+            for ent in entity_list:
+                if ent.name == 'Player':
+                    ent.score += enemy.score

@@ -88,13 +88,13 @@ ENTITY_HEALTH = {
     'Level2Bg5': 999,
     'Level2Bg6': 999,
     'Player': 300,
-    'PlayerAttack': 1,
-    'Enemy1': 40,
+    'PlayerAttack': 10,
+    'Enemy1': 10,
     'Enemy2': 100,
-    'Enemy3': 60,
+    'Enemy3': 30,
     'Enemy4': 20,
-    'Enemy5': 100,
-    'Enemy6': 100,
+    'Enemy5': 10,
+    'Enemy6': 10,
 }
 
 ENTITY_DAMAGE = {
@@ -115,8 +115,8 @@ ENTITY_DAMAGE = {
     'Player': 1,
     'PlayerAttack': 10,
     'Enemy1': 10,
-    'Enemy2': 40,
-    'Enemy3': 30,
+    'Enemy2': 30,
+    'Enemy3': 20,
     'Enemy4': 10,
     'Enemy5': 10,
     'Enemy6': 10,
@@ -139,12 +139,12 @@ ENTITY_SCORE = {
     'Level2Bg6': 0,
     'Player': 0,
     'PlayerAttack': 0,
-    'Enemy1': 100,
-    'Enemy2': 125,
-    'Enemy3': 100,
-    'Enemy4': 100,
-    'Enemy5': 100,
-    'Enemy6': 100,
+    'Enemy1': 50,
+    'Enemy2': 100,
+    'Enemy3': 80,
+    'Enemy4': 50,
+    'Enemy5': 10,
+    'Enemy6': 10,
 }
 
 ENTITY_SHOT_DELAY = {
@@ -174,8 +174,7 @@ PLAYER_KEY_JUMP = {'Player': pygame.K_SPACE}
 PLAYER_KEY_RUN = {'Player': pygame.KMOD_SHIFT}
 
 # S
-# SPAWN_TIME = 2000
-SPAWN_TIME = 6000
+SPAWN_TIME = 2000
 
 # T
 TIMEOUT_STEP = 100  # 100ms
