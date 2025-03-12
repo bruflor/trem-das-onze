@@ -12,3 +12,6 @@ class PlayerAttack(Entity):
 
     def move(self):
         self.rect.centerx += ENTITY_SPEED[self.name]
+
+    def update_animation(self):
+        pass

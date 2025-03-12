@@ -15,7 +15,7 @@ EVENT_TIMEOUT = pygame.USEREVENT + 2
 
 PLAYER_MOV_RANGE = {
     'max_height': WIN_HEIGHT,
-    'max_width': WIN_WIDTH + 470,
+    'max_width': WIN_WIDTH-120,
     'ground': WIN_HEIGHT - 30,
 }
 PLAYER_ATTACK_DELAY = 20
@@ -28,23 +28,21 @@ ENEMY_MOV_POS = {
     'Enemy6': WIN_HEIGHT - 30,
 }
 
-PLAYER_FRAME_COUNT = {
-    "idle": 5,
-    "running": 8,
-    "running-backward": 8,
-    "walking": 8,
-    "jumping": 8,
-    "attacking": 5,
-    "dead": 5,
-}
-
-ENEMY_FRAME_COUNT = {
-    'Enemy1': 4,
-    'Enemy2': 12,
-    'Enemy3': 6,
-    'Enemy4': 6,
-    'Enemy5': 1,
-    'Enemy6': 1,
+FRAME_COUNT = {
+    'Enemy1_walking': 4,
+    'Enemy2_walking': 12,
+    'Enemy3_walking': 6,
+    'Enemy4_walking': 6,
+    'Enemy5_walking': 1,
+    'Enemy6_walking': 1,
+    'PlayerAttack_walking':1,
+    "Player_idle": 5,
+    "Player_running": 8,
+    "Player_running_backward": 8,
+    "Player_walking": 8,
+    "Player_jumping": 8,
+    "Player_attacking": 5,
+    "Player_dead": 5,
 }
 
 ENTITY_SPEED = {

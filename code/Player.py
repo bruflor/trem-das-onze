@@ -1,5 +1,5 @@
 import pygame
-from code.Const import ENTITY_SPEED, PLAYER_MOV_RANGE, WIN_WIDTH, WIN_HEIGHT, PLAYER_FRAME_COUNT, PLAYER_ATTACK_DELAY, \
+from code.Const import ENTITY_SPEED, PLAYER_MOV_RANGE, WIN_WIDTH, WIN_HEIGHT, FRAME_COUNT, PLAYER_ATTACK_DELAY, \
     PLAYER_KEY_ATTACK
 from code.Entity import Entity
 from code.PlayerAttack import PlayerAttack
@@ -8,27 +8,6 @@ from code.PlayerAttack import PlayerAttack
 class Player(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
-        self.state = "walking"
-        self.surf = pygame.image.load('./assets/' + name + '.png').convert_alpha()
-        # Physics
-
-        # Calculate the width of a single frame
-        frame_width = self.surf.get_width() // PLAYER_FRAME_COUNT[self.state]
-        frame_height = self.surf.get_height()
-
-        # Set the rect size to match the frame size
-        self.rect = self.surf.get_rect(topleft=position)
-        self.rect.width = frame_width
-        self.rect.height = frame_height
-
-        self.attack_delay = PLAYER_ATTACK_DELAY
-
-        self.current_frame = 0
-
-        self.frame_rate = 10  # Frames per second
-        self.last_update = pygame.time.get_ticks()
-        self._gravity = 0
-        self.is_grounded = True  # Track if the player is on the ground
 
         # Images and sounds
         self.animations = {
@@ -41,6 +20,11 @@ class Player(Entity):
         self.jump_sound = pygame.mixer.Sound(f'./assets/Jump.wav')
         self.jump_sound.set_volume(0.3)
 
+        self.attack_delay = PLAYER_ATTACK_DELAY
+
+        self.last_update = pygame.time.get_ticks()
+        self._gravity = 0
+        self.is_grounded = True  # Track if the player is on the ground
 
     def update_animation(self):
         now = pygame.time.get_ticks()
