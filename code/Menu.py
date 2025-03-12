@@ -4,7 +4,7 @@ import sys
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import WIN_WIDTH, MENU_OPTION, COLOR_GREEN, COLOR_ORANGE, COLOR_RED, WIN_HEIGHT
+from code.Const import WIN_WIDTH, MENU_OPTION, COLOR_GREEN, COLOR_ORANGE, COLOR_RED, WIN_HEIGHT, COLOR_WHITE
 
 
 class Menu:
@@ -32,12 +32,13 @@ class Menu:
             # Adding menu texts
             self.menu_text(48, "TREM DAS", COLOR_ORANGE, ((WIN_WIDTH / 2), 70))
             self.menu_text(92, "ONZE", COLOR_RED, ((WIN_WIDTH / 2), 120))
+            self.menu_text(18, "Sobreviva até a estação", COLOR_ORANGE, ((WIN_WIDTH / 2), 160))
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
-                    self.menu_text(20, MENU_OPTION[i], COLOR_GREEN, ((WIN_WIDTH / 2), 200 + 25 * i))
+                    self.menu_text(20, MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
                 else:
-                    self.menu_text(20, MENU_OPTION[i], COLOR_ORANGE, ((WIN_WIDTH / 2), 200 + 25 * i))
+                    self.menu_text(20, MENU_OPTION[i], COLOR_GREEN, ((WIN_WIDTH / 2), 200 + 25 * i))
 
             # Updating the screen to render all
             pygame.display.flip()

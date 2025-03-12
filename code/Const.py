@@ -156,8 +156,7 @@ ENTITY_SHOT_DELAY = {
 }
 
 # M
-MENU_OPTION = ('NEW GAME - NORMAL',
-               # 'NEW GAME - HARDCORE',
+MENU_OPTION = ('NEW GAME',
                'SCORE',
                'INSTRUCTIONS',
                'EXIT')
