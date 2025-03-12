@@ -32,7 +32,7 @@ class Menu:
             # Adding menu texts
             self.menu_text(48, "TREM DAS", COLOR_ORANGE, ((WIN_WIDTH / 2), 70))
             self.menu_text(92, "ONZE", COLOR_RED, ((WIN_WIDTH / 2), 120))
-            self.menu_text(18, "Sobreviva até a estação", COLOR_ORANGE, ((WIN_WIDTH / 2), 160))
+            self.menu_text(18, "survive until the station", COLOR_ORANGE, ((WIN_WIDTH / 2), 160))
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:

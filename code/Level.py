@@ -6,17 +6,12 @@ import sys
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import COLOR_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, EVENT_TIMEOUT, TIMEOUT_STEP, \
-    TIMEOUT_LEVEL, WIN_WIDTH, COLOR_ORANGE, COLOR_GREEN, COLOR_RED
+from code.Const import COLOR_WHITE, EVENT_ENEMY, SPAWN_TIME, EVENT_TIMEOUT, TIMEOUT_STEP, \
+    TIMEOUT_LEVEL
 from code.Enemy import Enemy
-from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 from code.EntityMediator import EntityMediator
 from code.Player import Player
-
-
-# from code.Enemy import Enemy
-
 
 class Level:
     def __init__(self, window: Surface, name: str, game_mode: str, player_score: list[int]):
@@ -39,7 +34,7 @@ class Level:
 
     def run(self, player_score):
         pygame.mixer_music.load(f'./assets/{self.name}.wav')
-        pygame.mixer_music.set_volume(0.1)
+        pygame.mixer_music.set_volume(0.2)
         pygame.mixer_music.play(-1)
         clock = pygame.time.Clock()  # FPS
 
@@ -88,8 +83,8 @@ class Level:
                     return False
             # Texts
             self.level_text(14, f'{self.name} - Timeout {self.timeout / 1000 : .1f}s', COLOR_WHITE, (10, 5))
-            self.level_text(14, f'fps: {clock.get_fps() : .0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
-            self.level_text(14, f'entities: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 25))
+            # self.level_text(14, f'fps: {clock.get_fps() : .0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
+            # self.level_text(14, f'entities: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 25))
             pygame.display.flip()
 
             # Collisions
