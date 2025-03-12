@@ -32,7 +32,7 @@ class GameStats:
             if self.name == 'GameOver':
                 self.screen_text(48, "GAME", COLOR_ORANGE, ((WIN_WIDTH / 2), 70))
                 self.screen_text(92, "OVER", COLOR_RED, ((WIN_WIDTH / 2), 120))
-                # self.screen_text(24, player_score, COLOR_WHITE, ((WIN_WIDTH / 2), 140))
+
             elif self.name == 'GameWin':
                 self.screen_text(48, "you", COLOR_GREEN, ((WIN_WIDTH / 2), 70))
                 self.screen_text(92, "WON", COLOR_RED, ((WIN_WIDTH / 2), 120))
