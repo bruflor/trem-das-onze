@@ -1,5 +1,4 @@
 import pygame
-
 # W
 WIN_WIDTH = 576
 WIN_HEIGHT = 324
@@ -19,6 +18,7 @@ PLAYER_MOV_RANGE = {
     'ground': WIN_HEIGHT - 30,
 }
 PLAYER_ATTACK_DELAY = 20
+
 ENEMY_MOV_POS = {
     'Enemy1': WIN_HEIGHT - 30,
     'Enemy2': WIN_HEIGHT - 10,

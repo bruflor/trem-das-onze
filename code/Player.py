@@ -15,12 +15,14 @@ class Player(Entity):
             "running-backward": self._load_animation(f'./assets/{name}Run.png', frame_count=8, direction='backward'),
             "walking": self._load_animation(f'./assets/{name}Walk.png', frame_count=8),
             "jumping": self._load_animation(f'./assets/{name}Jump.png', frame_count=8),
-            "attacking": self._load_animation(f'./assets/{name}Attack.png', frame_count=5),
+            "attacking": self._load_animation(f'./assets/{name}Attack.png', frame_count=3),
         }
         self.jump_sound = pygame.mixer.Sound(f'./assets/Jump.wav')
         self.jump_sound.set_volume(0.3)
 
         self.attack_delay = PLAYER_ATTACK_DELAY
+        self.is_attacking = False  # Track if the player is attacking
+        self.attack_cooldown = 0  # Cooldown timer for attacks
 
         self.last_update = pygame.time.get_ticks()
         self._gravity = 0
@@ -45,6 +47,9 @@ class Player(Entity):
             self.is_grounded = False
 
     def move(self):
+        if self.is_attacking:
+            return  # Do not allow movement while attacking
+
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE] and self.is_grounded:
             self.state = "jumping"
@@ -66,16 +71,19 @@ class Player(Entity):
             self.state = "walking"
 
     def attack(self):
-        self.attack_delay -= 1
-        if self.attack_delay == 0:
-            self.attack_delay = PLAYER_ATTACK_DELAY
-            pressed_key = pygame.key.get_pressed()
-            if pressed_key[PLAYER_KEY_ATTACK[self.name]]:
-                self.state = "attacking"
-                return PlayerAttack(name=f'{self.name}Attack', position=(self.rect.centerx, self.rect.centery))
-            else:
-                return None
+        if self.attack_cooldown > 0:
+            self.attack_cooldown -= 1
+            return None
+
+        pressed_key = pygame.key.get_pressed()
+        if pressed_key[PLAYER_KEY_ATTACK[self.name]]:
+            self.is_attacking = True
+            self.state = "attacking"
+            self.current_frame = 0  # Reset animation frame
+            self.attack_cooldown = PLAYER_ATTACK_DELAY
+            return PlayerAttack(name=f'{self.name}Attack', position=(self.rect.top, self.rect.bottom))
         else:
+            self.is_attacking = False
             return None
 
     def update(self):
