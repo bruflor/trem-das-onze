@@ -171,7 +171,7 @@ PLAYER_KEY_JUMP = {'Player': pygame.K_SPACE}
 PLAYER_KEY_RUN = {'Player': pygame.KMOD_SHIFT}
 
 # S
-SPAWN_TIME = 2000
+SPAWN_TIME = 1000
 
 # T
 TIMEOUT_STEP = 100  # 100ms
@@ -193,4 +193,5 @@ SCORE_POS = {'Title': (WIN_WIDTH / 2, 50),
              7: (WIN_WIDTH / 2, 250),
              8: (WIN_WIDTH / 2, 270),
              9: (WIN_WIDTH / 2, 290),
+'Return': (WIN_WIDTH / 2, 300),
              }

@@ -7,7 +7,7 @@ from pygame import Surface, Rect
 from pygame.font import Font
 
 from code.Const import COLOR_WHITE, EVENT_ENEMY, SPAWN_TIME, EVENT_TIMEOUT, TIMEOUT_STEP, \
-    TIMEOUT_LEVEL
+    TIMEOUT_LEVEL, WIN_WIDTH, WIN_HEIGHT, COLOR_ORANGE
 from code.Enemy import Enemy
 from code.EntityFactory import EntityFactory
 from code.EntityMediator import EntityMediator
@@ -85,6 +85,7 @@ class Level:
             self.level_text(14, f'{self.name} - Timeout {self.timeout / 1000 : .1f}s', COLOR_WHITE, (10, 5))
             # self.level_text(14, f'fps: {clock.get_fps() : .0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
             # self.level_text(14, f'entities: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 25))
+            self.level_text(14, 'developed By Bruna Flôr (RU 4596056)', COLOR_ORANGE, (WIN_WIDTH-200, WIN_HEIGHT - 30))
             pygame.display.flip()
 
             # Collisions

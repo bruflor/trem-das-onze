@@ -22,6 +22,7 @@ class Game:
             game_over = GameStats('GameOver',self.window)
             game_win = GameStats('GameWin',self.window)
             score = GameStats('Score',self.window)
+            instructions = GameStats('Instructions',self.window)
 
             if menu_return == MENU_OPTION[0]:  # Players
                 player_score = [0, 0]  # [Player1, Player2] if we put it another player
@@ -48,9 +49,7 @@ class Game:
                 score.run(0)
 
             elif menu_return == MENU_OPTION[2]:  # Instructions
-                # Show instructions screen (placeholder)
-
-                pass
+                instructions.run(0)
 
             elif menu_return == MENU_OPTION[3]:  # Exit
                 pygame.quit()

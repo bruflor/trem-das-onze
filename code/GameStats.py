@@ -26,8 +26,8 @@ class GameStats:
         image = pygame.image.load(f'./assets/{self.name}.png').convert_alpha()
         return pygame.transform.scale(image, (WIN_WIDTH, WIN_HEIGHT))
 
-    def run(self, player_score):
-        """Main loop for displaying game stats (Game Over, Game Win, or Score screen)."""
+    def run(self, player_score=None):
+        """Main loop for displaying game stats (Game Over, Game Win, Score, or Instructions screen)."""
         db_proxy = DBProxy('DBScore')
         self._play_background_music()
 
@@ -53,9 +53,10 @@ class GameStats:
 
     def _play_background_music(self):
         """Load and play background music in a loop."""
-        pygame.mixer_music.load(f'./assets/{self.name}.mp3')
-        pygame.mixer_music.play(-1)
-        pygame.mixer_music.set_volume(0.3)
+        if self.name != 'Instructions':  # No music for the Instructions screen
+            pygame.mixer_music.load(f'./assets/{self.name}.mp3')
+            pygame.mixer_music.play(-1)
+            pygame.mixer_music.set_volume(0.3)
 
     def _render_screen_content(self, player_score, name, db_proxy):
         """Render text and other content based on the screen type."""
@@ -71,6 +72,8 @@ class GameStats:
             self._render_text(56, name, COLOR_WHITE, (WIN_WIDTH / 2, 140))
         elif self.name == 'Score':
             self._render_score_screen(db_proxy)
+        elif self.name == 'Instructions':
+            self._render_instructions_screen()
 
         self._render_text(16, "Press ESC button to return to menu", COLOR_WHITE, (WIN_WIDTH / 2, WIN_HEIGHT - 30))
 
@@ -83,6 +86,32 @@ class GameStats:
         for idx, player_score in enumerate(list_score):
             id_, name, score, date = player_score
             self._render_text(20, f'{name}     {score:05d}     {date}', COLOR_WHITE, SCORE_POS[idx])
+
+    def _render_instructions_screen(self):
+        """Render the Instructions screen with controls and story side by side, left-aligned."""
+        self._render_text(48, 'INSTRUCTIONS', COLOR_GREEN, (WIN_WIDTH / 2, 50))
+        self._render_text(14, 'developed By Bruna Flôr (RU 4596056)', COLOR_WHITE, (WIN_WIDTH/2, 80))
+        # Left Column: Controls
+        self._render_text_left(24, 'Controls:', COLOR_WHITE, (WIN_WIDTH / 4 - 100, 120))
+        self._render_text_left(18, 'Move Left: LEFT ARROW', COLOR_WHITE, (WIN_WIDTH / 4 - 100, 150))
+        self._render_text_left(18, 'Move Right: RIGHT ARROW', COLOR_WHITE, (WIN_WIDTH / 4 - 100, 170))
+        self._render_text_left(18, 'Jump: SPACE or UP ARROW', COLOR_WHITE, (WIN_WIDTH / 4 - 100, 190))
+        self._render_text_left(18, 'Attack: R-CONTROL', COLOR_WHITE, (WIN_WIDTH / 4 - 100, 210))
+
+        # Right Column: Story
+        self._render_text_left(24, 'Story:', COLOR_WHITE, (2.5 *WIN_WIDTH / 4 - 100, 120))
+        self._render_text_left(18, 'You are a brave adventurer trying to', COLOR_WHITE, (2.5 *WIN_WIDTH / 4 - 100, 150))
+        self._render_text_left(18, 'return home after a long day.', COLOR_WHITE, (2.5 *WIN_WIDTH / 4 - 100, 170))
+        self._render_text_left(18, 'Fight enemies, avoid obstacles,', COLOR_WHITE, (2.5 *WIN_WIDTH / 4 - 100, 190))
+        self._render_text_left(18, 'and make it back safely!', COLOR_WHITE, (2.5 *WIN_WIDTH / 4 - 100, 210))
+
+    def _render_text_left(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
+        """Render text on the screen aligned to the left."""
+        if text_size not in self.font_cache:
+            self.font_cache[text_size] = pygame.font.Font('./assets/Jersey10-Regular.ttf', text_size)
+        text_surf: Surface = self.font_cache[text_size].render(text, True, text_color).convert_alpha()
+        text_rect: Rect = text_surf.get_rect(topleft=text_pos)
+        self.window.blit(text_surf, text_rect)
 
     def _handle_key_events(self, event, name, player_score, db_proxy):
         """Handle key events for input and navigation."""

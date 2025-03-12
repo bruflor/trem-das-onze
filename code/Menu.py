@@ -40,6 +40,7 @@ class Menu:
                 else:
                     self.menu_text(20, MENU_OPTION[i], COLOR_GREEN, ((WIN_WIDTH / 2), 200 + 25 * i))
 
+            self.menu_text(14, 'developed By Bruna Flôr (RU 4596056)', COLOR_ORANGE, (WIN_WIDTH-110, WIN_HEIGHT - 30))
             # Updating the screen to render all
             pygame.display.flip()
 
