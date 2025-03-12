@@ -41,19 +41,6 @@ class Player(Entity):
         self.jump_sound = pygame.mixer.Sound(f'./assets/Jump.wav')
         self.jump_sound.set_volume(0.3)
 
-    def _load_animation(self, path: str, frame_count: int, direction='None'):
-        # Load a spritesheet and cut the frames
-        spritesheet = pygame.image.load(path).convert_alpha()
-        if direction == "backward":
-            sprite = pygame.transform.flip(spritesheet, True, False)
-            spritesheet = sprite
-        frame_width = spritesheet.get_width() // frame_count
-        frame_height = spritesheet.get_height()
-        frames = []
-        for i in range(frame_count):
-            frame = spritesheet.subsurface(pygame.Rect(i * frame_width, 0, frame_width, frame_height))
-            frames.append(frame)
-        return frames
 
     def update_animation(self):
         now = pygame.time.get_ticks()

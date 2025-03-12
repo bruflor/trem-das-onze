@@ -6,7 +6,6 @@ from code.Entity import Entity
 from code.Player import Player
 from code.PlayerAttack import PlayerAttack
 
-
 class EntityMediator:
     @staticmethod
     # method private
