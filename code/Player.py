@@ -17,7 +17,7 @@ class Player(Entity):
             "jumping": self._load_animation(f'./assets/{name}Jump.png', frame_count=8),
             "attacking": self._load_animation(f'./assets/{name}Attack.png', frame_count=3),
         }
-        self.jump_sound = pygame.mixer.Sound(f'./assets/Jump.wav')
+        self.jump_sound = pygame.mixer.Sound(f'./assets/Jump.mp3')
         self.jump_sound.set_volume(0.3)
 
         self.attack_delay = PLAYER_ATTACK_DELAY
