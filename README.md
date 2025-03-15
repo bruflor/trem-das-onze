@@ -127,9 +127,10 @@ View the top 10 scores.
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Acknowledgments
-**Pygame**: For providing the framework to build this game.
-**Assets**: All game assets:
-    - https://craftpix.net/
-    - https://freesound.org/
+
+- **Pygame**: For providing the framework to build this game.
+- **Assets**: All game assets:
+   - https://craftpix.net/
+   - https://freesound.org/
 
 Enjoy the game! If you have any questions or feedback, feel free to open an issue or contact me.
