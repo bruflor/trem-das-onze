@@ -25,20 +25,14 @@ class EntityFactory:
             case "Player":
                 return Player('Player', (5, PLAYER_MOV_RANGE['ground']))
             case "Enemy1":
-                print('enemy1')
                 return Enemy('Enemy1', (WIN_WIDTH + 10, ENEMY_MOV_POS['Enemy1']))
             case "Enemy2":
-                print('enemy2')
                 return Enemy('Enemy2', (WIN_WIDTH + 10, ENEMY_MOV_POS['Enemy2']))
             case "Enemy3":
-                print('enemy3')
                 return Enemy('Enemy3', (WIN_WIDTH + 10, ENEMY_MOV_POS['Enemy3']))
             case "Enemy4": # Pigeon
-                print('enemy4')
                 return Enemy('Enemy4', (WIN_WIDTH + 10, ENEMY_MOV_POS['Enemy4']))
             case "Enemy5":
-                print('enemy5')
                 return Enemy('Enemy5', (WIN_WIDTH + 10, ENEMY_MOV_POS['Enemy5']))
             case "Enemy6":
-                print('enemy6')
                 return Enemy('Enemy6', (WIN_WIDTH + 10, ENEMY_MOV_POS['Enemy6']))

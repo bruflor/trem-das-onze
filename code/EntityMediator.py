@@ -48,9 +48,6 @@ class EntityMediator:
                     # Mark the entities as having collided
                     ent1.collided_with.add(ent2)
                     ent2.collided_with.add(ent1)
-
-                    print(f"Collision: {ent1.name} and {ent2.name}")
-                    print(f"{ent1.name} health: {ent1.health}, {ent2.name} health: {ent2.health}")
             else:
                 # Reset the collision tracking if the entities are no longer colliding
                 if ent2 in ent1.collided_with:
