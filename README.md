@@ -81,14 +81,13 @@ Check the top 10 scores on the Score screen.
 | Attack|	R-CONTROL|
 |Return to Menu	| ESC (on non-gameplay screens)|
 
-<a name="screens"/>
-# Screens
-1. Main Menu
+## Screens
+### Main Menu
 Start the game, view instructions, or check the leaderboard.
 
 ![Main Menu](https://github.com/bruflor/trem-das-onze/blob/main/assets/screenshots/screenshots_3.png)
 
-3. Gameplay
+### Gameplay
 
 The main game screen where you control your character, with two different levels, five different enemies, player attack, jumps and run.
 
@@ -100,25 +99,25 @@ The main game screen where you control your character, with two different levels
 
 ![Player Jump](https://github.com/bruflor/trem-das-onze/blob/main/assets/screenshots/screenshots_6.png)
 
-4. Game Over
+### Game Over
 
 Displayed when you lose. Save your score and return to the menu.
 
 ![Game over screen](https://github.com/bruflor/trem-das-onze/blob/main/assets/screenshots/screenshots_7.png)
 
-6. Game Win
+### Game Win
 
 Displayed when you complete the level. Type your name and save your score and return to the menu.
 
 ![Game win screen](https://github.com/bruflor/trem-das-onze/blob/main/assets/screenshots/screenshots_9.png)
 
-8. Instructions
+### Instructions
 
 Learn how to play and read the game's story.
 
 ![Instructions](https://github.com/bruflor/trem-das-onze/blob/main/assets/screenshots/screenshots_4.png)
 
-9. Score
+### Score
 
 View the top 10 scores.
 
