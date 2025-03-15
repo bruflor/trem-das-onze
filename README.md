@@ -1,4 +1,4 @@
-# Trem das Onze
+# Trem das Onze 🚆
 
 Welcome to **Trem das Onze**! This is a 2D game where you play as a brave adventurer trying to return home safely.
 Fight enemies, avoid obstacles, and collect points to achieve the highest score!
@@ -81,28 +81,48 @@ Check the top 10 scores on the Score screen.
 | Attack|	R-CONTROL|
 |Return to Menu	| ESC (on non-gameplay screens)|
 
-## Screens
+<a name="screens"/>
+# Screens
 1. Main Menu
 Start the game, view instructions, or check the leaderboard.
-![Main Menu](https://github.com/bruflor/trem-das-onze/tree/main/assets/screenshots/screenshots_3.png)
-2. Gameplay
+
+![Main Menu](https://github.com/bruflor/trem-das-onze/blob/main/assets/screenshots/screenshots_3.png)
+
+3. Gameplay
+
 The main game screen where you control your character, with two different levels, five different enemies, player attack, jumps and run.
-![Level 1](https://github.com/bruflor/trem-das-onze/tree/main/assets/screenshots/screenshots_2.png)
-![Level 2](https://github.com/bruflor/trem-das-onze/tree/main/assets/screenshots/screenshots_1.png)
-![Player Attack](https://github.com/bruflor/trem-das-onze/tree/main/assets/screenshots/screenshots_8.png)
-![Player Jump](https://github.com/bruflor/trem-das-onze/tree/main/assets/screenshots/screenshots_6.png)
-3. Game Over
+
+![Level 1](https://github.com/bruflor/trem-das-onze/blob/main/assets/screenshots/screenshots_2.png)
+
+![Level 2](https://github.com/bruflor/trem-das-onze/blob/main/assets/screenshots/screenshots_1.png)
+
+![Player Attack](https://github.com/bruflor/trem-das-onze/blob/main/assets/screenshots/screenshots_8.png)
+
+![Player Jump](https://github.com/bruflor/trem-das-onze/blob/main/assets/screenshots/screenshots_6.png)
+
+4. Game Over
+
 Displayed when you lose. Save your score and return to the menu.
-![Game over screen](https://github.com/bruflor/trem-das-onze/tree/main/assets/screenshots/screenshots_7.png)
-4. Game Win
+
+![Game over screen](https://github.com/bruflor/trem-das-onze/blob/main/assets/screenshots/screenshots_7.png)
+
+6. Game Win
+
 Displayed when you complete the level. Type your name and save your score and return to the menu.
-![Game win screen](https://github.com/bruflor/trem-das-onze/tree/main/assets/screenshots/screenshots_9.png)
-5. Instructions
+
+![Game win screen](https://github.com/bruflor/trem-das-onze/blob/main/assets/screenshots/screenshots_9.png)
+
+8. Instructions
+
 Learn how to play and read the game's story.
-![Instructions](https://github.com/bruflor/trem-das-onze/tree/main/assets/screenshots/screenshots_4.png)
-6. Score
+
+![Instructions](https://github.com/bruflor/trem-das-onze/blob/main/assets/screenshots/screenshots_4.png)
+
+9. Score
+
 View the top 10 scores.
-![Score](https://github.com/bruflor/trem-das-onze/tree/main/assets/screenshots/screenshots_5.png)
+
+![Score](https://github.com/bruflor/trem-das-onze/blob/main/assets/screenshots/screenshots_5.png)
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
